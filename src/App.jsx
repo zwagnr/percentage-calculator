@@ -166,7 +166,11 @@ export default function App() {
             )}
           </div>
           <div className='footer'>
-            <div className='footer-left'>@2022 Zach Wagner</div>
+            <div className='footer-left'>
+              <a className='cc' href='https://github.com/zwagnr' target='_blank'>
+                @2022 Zach Wagner
+              </a>
+            </div>
             <div className='footer-right'>
               <div className='privacy'>privacy</div>
             </div>

@@ -59,7 +59,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
 }
 
 .main-wrapper {
@@ -299,8 +298,17 @@
 
 .privacy:hover {
   color: grey;
+  cursor: pointer;
 }
 
+.cc {
+  text-decoration: none;
+  color: black;
+}
+
+.cc:hover {
+  color: grey;
+}
 
 @media screen and (max-width: 420px) {
   .title {
@@ -309,7 +317,7 @@
     grid-area: 1 / 1 / 2 / 3;
     margin-left: 12px;
   }
-  
+
   .card {
     flex-shrink: inherit;
     height: auto;
@@ -320,7 +328,7 @@
   .card-header {
     border-radius: 0px 0px 0px 0px;
   }
-  
+
   .input-container {
     width: auto;
   }
@@ -332,7 +340,7 @@
     padding: 12px;
     flex-direction: column;
   }
-  
+
   .question-card-no-border {
     padding: 12px;
     flex-direction: column;
