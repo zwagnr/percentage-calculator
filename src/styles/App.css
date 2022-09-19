@@ -52,13 +52,14 @@
 .card {
   background: white;
   height: 420px;
+  width: 100%;
   border-radius: 0px 0px 8px 8px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 36px 0px 36px;
+  
 }
 
 .main-wrapper {
@@ -68,6 +69,7 @@
   flex-direction: column;
   margin-bottom: 12px;
   margin-top: 12px;
+  width: auto;
 }
 
 .main-container {
@@ -80,6 +82,7 @@
   cursor: default;
   height: auto;
   margin-bottom: 12px;
+  width: auto;
 }
 
 .blur {
@@ -270,11 +273,13 @@
 .footer-right {
   display: flex;
   font-size: small;
+  margin-right: 12px;
 }
 
 .footer-left {
   display: flex;
   font-size: small;
+  margin-left: 12px;
 }
 
 .help-container {
@@ -297,20 +302,25 @@
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 420px) {
   .title {
     align-self: center;
     justify-self: center;
     grid-area: 1 / 1 / 2 / 3;
-    font-size: x-large;
-    color: white;
+    margin-left: 12px;
   }
   
   .card {
     flex-shrink: inherit;
     height: auto;
+    width: 390px;
+    border-radius: 0px 0px 0px 0px;
   }
 
+  .card-header {
+    border-radius: 0px 0px 0px 0px;
+  }
+  
   .input-container {
     width: auto;
   }
@@ -326,5 +336,10 @@
   .question-card-no-border {
     padding: 12px;
     flex-direction: column;
+  }
+
+  .help-container {
+    width: auto;
+    height: auto;
   }
 }
