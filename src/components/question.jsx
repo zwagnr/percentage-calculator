@@ -5,9 +5,9 @@ export const Question = (props) => {
     <div className={props.questionDisplay}>
       <div className='input-container'>
         {props.left}
-        <InputItem onChange={props.onChange} name={props.name[0]} />
+        <InputItem onChange={props.onChange} name={props.name[0]} value={props.value1} />
         {props.center}
-        <InputItem onChange={props.onChange} name={props.name[1]} />
+        <InputItem onChange={props.onChange} name={props.name[1]} value={props.value2} />
         {props.right}
       </div>
       <div className='equals'> = </div>

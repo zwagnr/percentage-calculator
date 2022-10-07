@@ -10,21 +10,16 @@ import {
   percentDecrease,
 } from '../math';
 
-//Function to clear page :: ToDo- reimpliment by clearing state
-const refreshPage = () => {
-  window.location.reload();
-};
-
 export const QuestionCard = () => {
   const [userValues, setUserValues] = useState({
-    input1: ' ',
-    input2: ' ',
-    input3: ' ',
-    input4: ' ',
-    input5: ' ',
-    input6: ' ',
-    input7: ' ',
-    input8: ' ',
+    value1: null,
+    value2: null,
+    value3: null,
+    value4: null,
+    value5: null,
+    value6: null,
+    value7: null,
+    value8: null,
   });
 
   const [results, setResults] = useState({
@@ -47,7 +42,8 @@ export const QuestionCard = () => {
     setIncreaseDecrease(event.target.value);
   };
 
-  const handleAnswers = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     calculateResults(userValues);
   };
 
@@ -56,63 +52,88 @@ export const QuestionCard = () => {
       ? solveFunction(firstNumber, SecondNumber)
       : '?';
 
-  const calculateResults = ({ input1, input2, input3, input4, input5, input6, input7, input8 }) => {
+  const calculateResults = ({ value1, value2, value3, value4, value5, value6, value7, value8 }) => {
     setResults({
-      answer1: solution(input1, input2, xPercentOfY),
-      answer2: solution(input3, input4, xIsWhatPercentOfY),
-      answer3: solution(input5, input6, xIsYPercentOf),
+      answer1: solution(value1, value2, xPercentOfY),
+      answer2: solution(value3, value4, xIsWhatPercentOfY),
+      answer3: solution(value5, value6, xIsYPercentOf),
       answer4:
-        typeof input7 && typeof input8 === 'number'
+        typeof value7 && typeof value8 === 'number'
           ? increaseDecrease === 'Increase'
-            ? percentIncrease(input7, input8)
-            : percentDecrease(input7, input8)
+            ? percentIncrease(value7, value8)
+            : percentDecrease(value7, value8)
           : '?',
     });
   };
+
+  const reset = () => {
+    setUserValues({
+      ...userValues,
+      value1: '',
+      value2: '',
+      value3: '',
+      value4: '',
+      value5: '',
+      value6: '',
+      value7: '',
+      value8: '',
+    });
+  };
+
   return (
     <>
-      <div className='question-container'>
-        <Question
-          onChange={handleInput}
-          name={['input1', 'input2']}
-          answer={results.answer1}
-          left={'what is'}
-          center={'% of'}
-          questionDisplay={'question-card'}
-        />
-        <Question
-          onChange={handleInput}
-          name={['input3', 'input4']}
-          answer={results.answer2}
-          center={'is what % of'}
-          questionDisplay={'question-card'}
-        />
-        <Question
-          onChange={handleInput}
-          name={['input5', 'input6']}
-          answer={results.answer3}
-          center={'is'}
-          right={'% of what'}
-          questionDisplay={'question-card'}
-        />
-        <Question
-          onChange={handleInput}
-          name={['input7', 'input8']}
-          answer={results.answer4}
-          left={<Dropdown onChange={handleIncreaseDecrease} />}
-          center={'by'}
-          right={'%'}
-          questionDisplay={'question-card-no-border'}
-        />
-      </div>
-      <div className='button-container'>
-        <button className='primary-button' onClick={handleAnswers}>
-          Calculate
-        </button>
-        <button className='secondary-button' onClick={refreshPage}>
-          Reset
-        </button>
-      </div>
+      <form onSubmit={handleSubmit}>
+        <div className='question-container'>
+          <Question
+            onChange={handleInput}
+            name={['value1', 'value2']}
+            answer={results.answer1}
+            left={'what is'}
+            center={'% of'}
+            questionDisplay={'question-card'}
+            value1={userValues.value1}
+            value2={userValues.value2}
+          />
+          <Question
+            onChange={handleInput}
+            name={['value3', 'value4']}
+            answer={results.answer2}
+            center={'is what % of'}
+            questionDisplay={'question-card'}
+            value1={userValues.value3}
+            value2={userValues.value4}
+          />
+          <Question
+            onChange={handleInput}
+            name={['value5', 'value6']}
+            answer={results.answer3}
+            center={'is'}
+            right={'% of what'}
+            questionDisplay={'question-card'}
+            value1={userValues.value5}
+            value2={userValues.value6}
+          />
+          <Question
+            onChange={handleInput}
+            name={['value7', 'value8']}
+            answer={results.answer4}
+            left={<Dropdown onChange={handleIncreaseDecrease} />}
+            center={'by'}
+            right={'%'}
+            questionDisplay={'question-card-no-border'}
+            value1={userValues.value7}
+            value2={userValues.value8}
+          />
+        </div>
+        <div className='button-container'>
+          <button className='primary-button' type='submit'>
+            Calculate
+          </button>
+          <button className='secondary-button' onClick={reset}>
+            Reset
+          </button>
+        </div>
+      </form>
     </>
   );
 };

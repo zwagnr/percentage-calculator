@@ -6,5 +6,6 @@ export const InputItem = (props) => (
     minlength='1'
     maxlength='1000'
     size='4'
+    value={props.value}
   ></input>
 );
