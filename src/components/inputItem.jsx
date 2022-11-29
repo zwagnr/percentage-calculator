@@ -3,8 +3,8 @@ export const InputItem = (props) => (
     name={props.name}
     type='text'
     onChange={props.onChange}
-    minlength='1'
-    maxlength='1000'
+    minLength='1'
+    maxLength='1000'
     size='4'
     value={props.value}
   ></input>
