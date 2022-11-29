@@ -1,11 +1,11 @@
 export const InputItem = (props) => (
   <input
-    name={props.name}
-    type='text'
-    onChange={props.onChange}
-    minLength='1'
     maxLength='1000'
+    minLength='1'
+    name={props.name}
+    onChange={props.onChange}
     size='4'
+    type='text'
     value={props.value}
   ></input>
 );
