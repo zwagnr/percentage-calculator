@@ -29,43 +29,6 @@ export const QuestionCard = () => {
     answer4: '?',
   });
 
-  const [increaseDecrease, setIncreaseDecrease] = useState('Increase');
-
-  const handleInput = (event) => {
-    setUserValues({
-      ...userValues,
-      [event.target.name]: Number(event.target.value),
-    });
-  };
-
-  const handleIncreaseDecrease = (event) => {
-    setIncreaseDecrease(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    calculateResults(userValues);
-  };
-
-  const solution = (firstNumber, SecondNumber, solveFunction) =>
-    typeof firstNumber && typeof SecondNumber === 'number'
-      ? solveFunction(firstNumber, SecondNumber)
-      : '?';
-
-  const calculateResults = ({ value1, value2, value3, value4, value5, value6, value7, value8 }) => {
-    setResults({
-      answer1: solution(value1, value2, xPercentOfY),
-      answer2: solution(value3, value4, xIsWhatPercentOfY),
-      answer3: solution(value5, value6, xIsYPercentOf),
-      answer4:
-        typeof value7 && typeof value8 === 'number'
-          ? increaseDecrease === 'Increase'
-            ? percentIncrease(value7, value8)
-            : percentDecrease(value7, value8)
-          : '?',
-    });
-  };
-
   const reset = () => {
     setUserValues({
       ...userValues,
@@ -80,6 +43,38 @@ export const QuestionCard = () => {
     });
   };
 
+  const [increaseDecrease, setIncreaseDecrease] = useState('Increase');
+
+  const handleInput = (event) => {
+    setUserValues({
+      ...userValues,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleIncreaseDecrease = (event) => {
+    setIncreaseDecrease(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    calculateResults(userValues);
+  };
+
+  const calculateResults = ({ value1, value2, value3, value4, value5, value6, value7, value8 }) => {
+    setResults({
+      answer1: (value1 || value2) === '' ? '?' : xPercentOfY(value1, value2),
+      answer2: (value3 || value4) === '' ? '?' : xIsWhatPercentOfY(value3, value4),
+      answer3: (value5 || value6) === '' ? '?' : xIsYPercentOf(value5, value6),
+      answer4:
+        (value7 || value8) === ''
+          ? '?'
+          : increaseDecrease === 'Increase'
+          ? percentIncrease(value7, value8)
+          : percentDecrease(value7, value8),
+    });
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -91,8 +86,8 @@ export const QuestionCard = () => {
             left={'what is'}
             center={'% of'}
             questionDisplay={'question-card'}
-            value1={userValues.value1}
-            value2={userValues.value2}
+            valueA={userValues.value1}
+            valueB={userValues.value2}
           />
           <Question
             onChange={handleInput}
@@ -100,8 +95,8 @@ export const QuestionCard = () => {
             answer={results.answer2}
             center={'is what % of'}
             questionDisplay={'question-card'}
-            value1={userValues.value3}
-            value2={userValues.value4}
+            valueA={userValues.value3}
+            valueB={userValues.value4}
           />
           <Question
             onChange={handleInput}
@@ -110,8 +105,8 @@ export const QuestionCard = () => {
             center={'is'}
             right={'% of what'}
             questionDisplay={'question-card'}
-            value1={userValues.value5}
-            value2={userValues.value6}
+            valueA={userValues.value5}
+            valueB={userValues.value6}
           />
           <Question
             onChange={handleInput}
@@ -121,8 +116,8 @@ export const QuestionCard = () => {
             center={'by'}
             right={'%'}
             questionDisplay={'question-card-no-border'}
-            value1={userValues.value7}
-            value2={userValues.value8}
+            valueA={userValues.value7}
+            valueB={userValues.value8}
           />
         </div>
         <div className='button-container'>
