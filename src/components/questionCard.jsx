@@ -29,6 +29,20 @@ export const QuestionCard = () => {
     answer4: '?',
   });
 
+  const reset = () => {
+    setUserValues({
+      ...userValues,
+      value1: '',
+      value2: '',
+      value3: '',
+      value4: '',
+      value5: '',
+      value6: '',
+      value7: '',
+      value8: '',
+    });
+  };
+
   const [increaseDecrease, setIncreaseDecrease] = useState('Increase');
 
   const handleInput = (event) => {
@@ -58,20 +72,6 @@ export const QuestionCard = () => {
           : increaseDecrease === 'Increase'
           ? percentIncrease(value7, value8)
           : percentDecrease(value7, value8),
-    });
-  };
-
-  const reset = () => {
-    setUserValues({
-      ...userValues,
-      value1: '',
-      value2: '',
-      value3: '',
-      value4: '',
-      value5: '',
-      value6: '',
-      value7: '',
-      value8: '',
     });
   };
 
