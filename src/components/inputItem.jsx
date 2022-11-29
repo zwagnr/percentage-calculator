@@ -5,7 +5,7 @@ export const InputItem = (props) => (
     name={props.name}
     onChange={props.onChange}
     size='4'
-    type='text'
+    type="number"
     value={props.value}
   ></input>
 );
